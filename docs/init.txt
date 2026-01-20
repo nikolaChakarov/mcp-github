@@ -1,0 +1,10 @@
+1. install Java
+    put in environment vairables
+2. install Salesforce CLI
+
+3. Vs Code Extentions: Extension Pack (Expanded)
+
+call Apex from Vs Code
+    SFDX: Execute Anonymous Apex with Currently Selected Text
+    
+SFDX: Refresh SObject Definitions
