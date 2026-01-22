@@ -1,0 +1,85 @@
+<template>
+    <lightning-card title="Account Search" icon-name="standard:account">
+        <!-- Search Input Section -->
+        <div class="slds-p-around_medium">
+            <lightning-input
+                type="search"
+                label="Search Accounts"
+                placeholder="Enter account name to search..."
+                value={searchTerm}
+                onchange={handleSearchChange}
+            ></lightning-input>
+        </div>
+
+        <!-- Datatable Section -->
+        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+            <template if:true={accounts}>
+                <template if:true={hasRecords}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={accounts}
+                        columns={columns}
+                        hide-checkbox-column
+                    ></lightning-datatable>
+                    
+                    <!-- Pagination Controls -->
+                    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-top_medium">
+                        <!-- Record Count -->
+                        <div class="slds-col">
+                            <span class="slds-text-body_small slds-text-color_weak">
+                                {recordCountDisplay}
+                            </span>
+                        </div>
+                        
+                        <!-- Navigation Buttons -->
+                        <div class="slds-col slds-grid slds-grid_align-end slds-grid_vertical-align-center">
+                            <span class="slds-text-body_small slds-text-color_weak slds-m-right_medium">
+                                {paginationInfo}
+                            </span>
+                            <lightning-button-group>
+                                <lightning-button
+                                    label="Previous"
+                                    icon-name="utility:chevronleft"
+                                    onclick={handlePreviousPage}
+                                    disabled={isPreviousDisabled}
+                                ></lightning-button>
+                                <lightning-button
+                                    label="Next"
+                                    icon-name="utility:chevronright"
+                                    icon-position="right"
+                                    onclick={handleNextPage}
+                                    disabled={isNextDisabled}
+                                ></lightning-button>
+                            </lightning-button-group>
+                        </div>
+                    </div>
+                </template>
+                <template if:false={hasRecords}>
+                    <div class="slds-text-align_center slds-p-around_large">
+                        <lightning-icon 
+                            icon-name="utility:search" 
+                            size="large" 
+                            alternative-text="No results">
+                        </lightning-icon>
+                        <p class="slds-text-heading_small slds-p-top_medium">
+                            {emptyStateMessage}
+                        </p>
+                    </div>
+                </template>
+            </template>
+
+            <!-- Error Message -->
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-p-around_medium">
+                    <lightning-icon 
+                        icon-name="utility:error" 
+                        size="small" 
+                        variant="error" 
+                        class="slds-m-right_small">
+                    </lightning-icon>
+                    {error}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

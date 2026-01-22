@@ -8,3 +8,7 @@ call Apex from Vs Code
     SFDX: Execute Anonymous Apex with Currently Selected Text
     
 SFDX: Refresh SObject Definitions
+
+Use multiple model  - it has to be GIT project and we can allow Use Multiple Models button.
+
+Ctrl + K - open command palette in specific code block
