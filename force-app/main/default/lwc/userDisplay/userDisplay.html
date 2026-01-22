@@ -1,0 +1,70 @@
+<template>
+    <lightning-card title="User Information" icon-name="standard:user">
+        <!-- User Information Display Section -->
+        <div class="slds-p-around_medium">
+            <template if:true={hasData}>
+                <!-- User Name -->
+                <div class="slds-form-element slds-p-bottom_small">
+                    <label class="slds-form-element__label slds-text-title_bold">
+                        User Name
+                    </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-text-body_regular">
+                            {userName}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Username -->
+                <div class="slds-form-element slds-p-bottom_small">
+                    <label class="slds-form-element__label slds-text-title_bold">
+                        Username
+                    </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-text-body_regular">
+                            {userUsername}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Current Date -->
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label slds-text-title_bold">
+                        Current Date
+                    </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-text-body_regular">
+                            {currentDate}
+                        </div>
+                    </div>
+                </div>
+            </template>
+            
+            <!-- Loading State -->
+            <template if:true={isLoading}>
+                <div class="slds-text-align_center slds-p-around_large">
+                    <lightning-spinner 
+                        alternative-text="Loading user information" 
+                        size="small">
+                    </lightning-spinner>
+                    <p class="slds-p-top_small slds-text-color_weak">
+                        Loading user information...
+                    </p>
+                </div>
+            </template>
+            
+            <!-- Error Message -->
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-p-around_medium">
+                    <lightning-icon 
+                        icon-name="utility:error" 
+                        size="small" 
+                        variant="error" 
+                        class="slds-m-right_small">
+                    </lightning-icon>
+                    {error}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
