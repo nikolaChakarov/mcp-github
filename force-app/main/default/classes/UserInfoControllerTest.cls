@@ -11,7 +11,7 @@ private class UserInfoControllerTest {
     @IsTest
     static void testGetUserInfo_Success_ReturnsUserData() {
         Test.startTest();
-        UserInfoController.UserInfo result = UserInfoController.getUserInfo();
+        UserInfoController.UserData result = UserInfoController.getUserInfo();
         Test.stopTest();
         
         // Verify result is not null
@@ -39,7 +39,7 @@ private class UserInfoControllerTest {
         User currentUser = [SELECT Id, Name, Username FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
         
         Test.startTest();
-        UserInfoController.UserInfo result = UserInfoController.getUserInfo();
+        UserInfoController.UserData result = UserInfoController.getUserInfo();
         Test.stopTest();
         
         // Verify returned data matches current user
@@ -53,7 +53,7 @@ private class UserInfoControllerTest {
     @IsTest
     static void testGetUserInfo_DateFormat_IsCorrect() {
         Test.startTest();
-        UserInfoController.UserInfo result = UserInfoController.getUserInfo();
+        UserInfoController.UserData result = UserInfoController.getUserInfo();
         Test.stopTest();
         
         // Verify date format (e.g., "January 22, 2026")
@@ -74,8 +74,8 @@ private class UserInfoControllerTest {
         Test.startTest();
         
         // Call the method multiple times to verify cacheability
-        UserInfoController.UserInfo result1 = UserInfoController.getUserInfo();
-        UserInfoController.UserInfo result2 = UserInfoController.getUserInfo();
+        UserInfoController.UserData result1 = UserInfoController.getUserInfo();
+        UserInfoController.UserData result2 = UserInfoController.getUserInfo();
         
         Test.stopTest();
         
@@ -94,7 +94,7 @@ private class UserInfoControllerTest {
     @IsTest
     static void testGetUserInfo_AllFields_ArePopulated() {
         Test.startTest();
-        UserInfoController.UserInfo result = UserInfoController.getUserInfo();
+        UserInfoController.UserData result = UserInfoController.getUserInfo();
         Test.stopTest();
         
         // Verify all fields in wrapper class are populated
@@ -114,11 +114,11 @@ private class UserInfoControllerTest {
     @IsTest
     static void testGetUserInfo_DataStructure_IsValid() {
         Test.startTest();
-        UserInfoController.UserInfo result = UserInfoController.getUserInfo();
+        UserInfoController.UserData result = UserInfoController.getUserInfo();
         Test.stopTest();
         
         // Verify the result is of correct type
-        Assert.isInstanceOfType(result, UserInfoController.UserInfo.class, 'Result should be UserInfo type');
+        Assert.isInstanceOfType(result, UserInfoController.UserData.class, 'Result should be UserData type');
         
         // Verify fields are strings
         Assert.isInstanceOfType(result.name, String.class, 'Name should be String type');
@@ -135,7 +135,7 @@ private class UserInfoControllerTest {
         Test.startTest();
         
         Boolean exceptionThrown = false;
-        UserInfoController.UserInfo result;
+        UserInfoController.UserData result;
         
         try {
             result = UserInfoController.getUserInfo();

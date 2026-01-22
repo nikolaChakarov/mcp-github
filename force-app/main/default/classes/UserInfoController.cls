@@ -7,12 +7,12 @@ public with sharing class UserInfoController {
     /**
      * Wrapper class to return user information
      */
-    public class UserInfo {
+    public class UserData {
         @AuraEnabled public String name { get; set; }
         @AuraEnabled public String username { get; set; }
         @AuraEnabled public String currentDate { get; set; }
         
-        public UserInfo() {
+        public UserData() {
             this.name = '';
             this.username = '';
             this.currentDate = '';
@@ -21,12 +21,12 @@ public with sharing class UserInfoController {
     
     /**
      * Retrieves the current logged-in user's information and current date
-     * @return UserInfo wrapper with user name, username, and formatted current date
+     * @return UserData wrapper with user name, username, and formatted current date
      */
     @AuraEnabled(cacheable=true)
-    public static UserInfo getUserInfo() {
+    public static UserData getUserInfo() {
         try {
-            UserInfo result = new UserInfo();
+            UserData result = new UserData();
             
             // Query current user information
             User currentUser = [
